@@ -130,48 +130,48 @@ Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 // Repte 6:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'una unió d'objectes.
 // */
-describe("Transformació: indexed access amb unions", () => {
-  const programModeEnumMap = {
-    GROUP: "group",
-    ANNOUNCEMENT: "announcement",
-    ONE_ON_ONE: "1on1",
-    SELF_DIRECTED: "selfDirected",
-    PLANNED_ONE_ON_ONE: "planned1on1",
-    PLANNED_SELF_DIRECTED: "plannedSelfDirected",
-  } as const;
+// describe("Transformació: indexed access amb unions", () => {
+//   const programModeEnumMap = {
+//     GROUP: "group",
+//     ANNOUNCEMENT: "announcement",
+//     ONE_ON_ONE: "1on1",
+//     SELF_DIRECTED: "selfDirected",
+//     PLANNED_ONE_ON_ONE: "planned1on1",
+//     PLANNED_SELF_DIRECTED: "plannedSelfDirected",
+//   } as const;
 
-  type IndividualProgram = (typeof programModeEnumMap)[
-    | "ONE_ON_ONE"
-    | "SELF_DIRECTED"
-    | "PLANNED_ONE_ON_ONE"
-    | "PLANNED_SELF_DIRECTED"
-  ];
+//   type IndividualProgram = (typeof programModeEnumMap)[
+//     | "ONE_ON_ONE"
+//     | "SELF_DIRECTED"
+//     | "PLANNED_ONE_ON_ONE"
+//     | "PLANNED_SELF_DIRECTED"
+//   ];
 
-  type tests = [
-    Expect<
-      Equal<
-        IndividualProgram,
-        "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
-      >
-    >,
-  ];
-});
+//   type tests = [
+//     Expect<
+//       Equal<
+//         IndividualProgram,
+//         "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
+//       >
+//     >,
+//   ];
+// });
 
 // /*
 // Repte 7:
 // Utilitza indexed access types i unions per obtenir el tipus dels valors d'un array.
 // */
-// describe("Transformació: obtenir el tipus dels valors d'un array", () => {
-//   const fruits = ["apple", "banana", "orange"];
+describe("Transformació: obtenir el tipus dels valors d'un array", () => {
+  const fruits = ["apple", "banana", "orange"] as const;
 
-//   type AppleOrBanana = unknown;
-//   type Fruit = unknown;
+  type AppleOrBanana = (typeof fruits)[0 | 1];
+  type Fruit = (typeof fruits)[number];
 
-//   type tests = [
-//     Expect<Equal<AppleOrBanana, "apple" | "banana">>,
-//     Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
-//   ];
-// });
+  type tests = [
+    Expect<Equal<AppleOrBanana, "apple" | "banana">>,
+    Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
+  ];
+});
 
 // /*
 // Repte 8:
