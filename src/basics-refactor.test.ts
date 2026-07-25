@@ -10,7 +10,7 @@ Llegeix l'article:
 
 describe("Problema de nombres", () => {
   it("Ha de sumar els dos nombres", () => {
-    const addTwoNumbers = (a, b) => {
+    const addTwoNumbers = (a: number, b: number) => {
       return a + b;
     };
     expectTypeOf(addTwoNumbers).parameter(0).toEqualTypeOf<number>();
