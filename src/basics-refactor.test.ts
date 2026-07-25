@@ -259,61 +259,34 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Has d'esbrinar com actualitzar l'anotació del tipus de retorn perquè TypeScript estigui satisfet.
 // */
 
-describe("Problema de promeses", () => {
-  interface LukeSkywalker {
-    name: string;
-    height: string;
-    mass: string;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-    birth_year: string;
-    gender: string;
-  }
-
-  const fetchLukeSkywalker = async (): Promise<LukeSkywalker> => {
-    const data = await fetch("https://swapi.py4e.com/api/people/1").then(
-      (res) => {
-        return res.json();
-      }
-    );
-
-    return data;
-  };
-  it("ha de retornar una promesa", async () => {
-   const result = fetchLukeSkywalker();
-
-   expect(result).toBeInstanceOf(Promise);
-  });
-});
 
 // /*
 // Repte 10:
 // Actualitza guitarists perquè estigui tipat com un Set de strings.
 // */
 
-// describe("Problema de Set", () => {
-//   const guitarists = new Set();
+describe("Problema de Set", () => {
+  const guitarists = new Set<string>();
 
-//   guitarists.add("Jimi Hendrix");
-//   guitarists.add("Eric Clapton");
+  guitarists.add("Jimi Hendrix");
+  guitarists.add("Eric Clapton");
 
-//   it("Ha de contenir en Jimi i l'Eric", () => {
-//     expect(guitarists.has("Jimi Hendrix")).toEqual(true);
-//     expect(guitarists.has("Eric Clapton")).toEqual(true);
-//   });
+  it("Ha de contenir en Jimi i l'Eric", () => {
+    expect(guitarists.has("Jimi Hendrix")).toEqual(true);
+    expect(guitarists.has("Eric Clapton")).toEqual(true);
+  });
 
-//   it("Ha de donar un error de tipus si proves d'afegir un valor que no sigui string", () => {
-//     // @ts-expect-error
-//     guitarists.add(2);
-//   });
+  it("Ha de donar un error de tipus si proves d'afegir un valor que no sigui string", () => {
+    // @ts-expect-error
+    guitarists.add(2);
+  });
 
-//   it("Ha de ser un Set<string> que es pugui convertir a string[]", () => {
-//     const guitaristsAsArray = Array.from(guitarists);
+  it("Ha de ser un Set<string> que es pugui convertir a string[]", () => {
+    const guitaristsAsArray = Array.from(guitarists);
 
-//     type tests = [Expect<Equal<typeof guitaristsAsArray, string[]>>];
-//   });
-// });
+    type tests = [Expect<Equal<typeof guitaristsAsArray, string[]>>];
+  });
+});
 
 // /*
 // Repte 11:
