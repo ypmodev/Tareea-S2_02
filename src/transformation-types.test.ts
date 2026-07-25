@@ -59,43 +59,43 @@ Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 // /*Repte 3:
 /*Utilitza ReturnType per obtenir el tipus de retorn de getUser.*/
 
-describe("Transformació: obtenir el tipus de retorn d'una funció asíncrona", () => {
-  const getUser = () => {
-    return Promise.resolve({
-      id: "123",
-      name: "John",
-      email: "john@example.com",
-    });
-  };
+// describe("Transformació: obtenir el tipus de retorn d'una funció asíncrona", () => {
+//   const getUser = () => {
+//     return Promise.resolve({
+//       id: "123",
+//       name: "John",
+//       email: "john@example.com",
+//     });
+//   };
 
-  type ReturnValue = Awaited<ReturnType<typeof getUser>>;
+//   type ReturnValue = Awaited<ReturnType<typeof getUser>>;
 
-  type tests = [
-    Expect<Equal<ReturnValue, { id: string; name: string; email: string }>>,
-  ];
-});
+//   type tests = [
+//     Expect<Equal<ReturnValue, { id: string; name: string; email: string }>>,
+//   ];
+// });
 
 // /*
 // Repte 4:
 // Obté les claus d'un objecte com a tipus d'unió.
 // */
-// describe("Transformació: obtenir les claus d'un objecte", () => {
-//   const testingFrameworks = {
-//     vitest: {
-//       label: "Vitest",
-//     },
-//     jest: {
-//       label: "Jest",
-//     },
-//     mocha: {
-//       label: "Mocha",
-//     },
-//   };
+describe("Transformació: obtenir les claus d'un objecte", () => {
+  const testingFrameworks = {
+    vitest: {
+      label: "Vitest",
+    },
+    jest: {
+      label: "Jest",
+    },
+    mocha: {
+      label: "Mocha",
+    },
+  };
 
-//   type TestingFramework = unknown;
+  type TestingFramework = keyof typeof testingFrameworks;;
 
-//   type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
-// });
+  type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
+});
 
 // /*
 // Repte 5:
