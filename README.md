@@ -13,7 +13,7 @@ Proyecto de ejercicios prácticos centrado en el aprendizaje y dominio de TypeSc
 
 1. Clona el repositorio:
 ```bash
-git clone <https://github.com/ypmodev/Tareea-S2_02.git>
+git clone <https://github.com/ypmodev/Tarea-S2_02.git>
 ```
 
 2. Accede al proyecto:
