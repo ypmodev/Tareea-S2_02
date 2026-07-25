@@ -161,37 +161,39 @@ Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 // Repte 7:
 // Utilitza indexed access types i unions per obtenir el tipus dels valors d'un array.
 // */
-describe("Transformació: obtenir el tipus dels valors d'un array", () => {
-  const fruits = ["apple", "banana", "orange"] as const;
+// describe("Transformació: obtenir el tipus dels valors d'un array", () => {
+//   const fruits = ["apple", "banana", "orange"] as const;
 
-  type AppleOrBanana = (typeof fruits)[0 | 1];
-  type Fruit = (typeof fruits)[number];
+//   type AppleOrBanana = (typeof fruits)[0 | 1];
+//   type Fruit = (typeof fruits)[number];
 
-  type tests = [
-    Expect<Equal<AppleOrBanana, "apple" | "banana">>,
-    Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
-  ];
-});
+//   type tests = [
+//     Expect<Equal<AppleOrBanana, "apple" | "banana">>,
+//     Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
+//   ];
+// });
 
 // /*
 // Repte 8:
 // Utilitza indexed access types per obtenir el tipus dels valors d'un objecte amb as const.
 // */
-// describe("Transformació: obtenir el tipus dels valors d'un objecte amb as const", () => {
-//   const frontendToBackendEnumMap = {
-//     singleModule: "SINGLE_MODULE",
-//     multiModule: "MULTI_MODULE",
-//     sharedModule: "SHARED_MODULE",
-//   } as const;
+describe("Transformació: obtenir el tipus dels valors d'un objecte amb as const", () => {
+  const frontendToBackendEnumMap = {
+    singleModule: "SINGLE_MODULE",
+    multiModule: "MULTI_MODULE",
+    sharedModule: "SHARED_MODULE",
+  } as const;
 
-//   type BackendModuleEnum = unknown;
+  type EnumMap = typeof frontendToBackendEnumMap;
 
-//   type tests = [
-//     Expect<
-//       Equal<BackendModuleEnum, "SINGLE_MODULE" | "MULTI_MODULE" | "SHARED_MODULE">
-//     >,
-//   ];
-// });
+  type BackendModuleEnum = EnumMap[keyof EnumMap];
+
+  type tests = [
+    Expect<
+      Equal<BackendModuleEnum, "SINGLE_MODULE" | "MULTI_MODULE" | "SHARED_MODULE">
+    >,
+  ];
+});
 
 // /*
 // Repte 9:
