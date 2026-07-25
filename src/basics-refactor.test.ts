@@ -295,42 +295,42 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Pista: Consulta com representar objectes amb claus de tipus string i valors tipats.
 // */
 
-describe("Problema de Record", () => {
-  const createCache = () => {
-    const cache: Record<string, string> = {};
+// describe("Problema de Record", () => {
+//   const createCache = () => {
+//     const cache: Record<string, string> = {};
 
-    const add = (id: string, value: string) => {
-      cache[id] = value;
-    };
+//     const add = (id: string, value: string) => {
+//       cache[id] = value;
+//     };
 
-    const remove = (id: string) => {
-      delete cache[id];
-    };
+//     const remove = (id: string) => {
+//       delete cache[id];
+//     };
 
-    return {
-      cache,
-      add,
-      remove,
-    };
-  };
+//     return {
+//       cache,
+//       add,
+//       remove,
+//     };
+//   };
 
-  it("Ha d'afegir valors a la memòria cache", () => {
-    const cache = createCache();
+//   it("Ha d'afegir valors a la memòria cache", () => {
+//     const cache = createCache();
 
-    cache.add("123", "Jen");
+//     cache.add("123", "Jen");
 
-    expect(cache.cache["123"]).toEqual("Jen");
-  });
+//     expect(cache.cache["123"]).toEqual("Jen");
+//   });
 
-  it("Ha d'eliminar valors de la memòria cache", () => {
-    const cache = createCache();
+//   it("Ha d'eliminar valors de la memòria cache", () => {
+//     const cache = createCache();
 
-    cache.add("123", "Jen");
-    cache.remove("123");
+//     cache.add("123", "Jen");
+//     cache.remove("123");
 
-    expect(cache.cache["123"]).toEqual(undefined);
-  });
-});
+//     expect(cache.cache["123"]).toEqual(undefined);
+//   });
+// });
 
 // /*
 // Repte 12:
@@ -338,17 +338,23 @@ describe("Problema de Record", () => {
 // Pista: utilitza typeof per diferenciar entre nombre i objecte.
 // */
 
-// describe("Problema de filtratge amb typeof", () => {
-//   const coerceAmount = (amount: number | { amount: number }) => {};
+describe("Problema de filtratge amb typeof", () => {
+  const coerceAmount = (amount: number | { amount: number }) => {
+  if (typeof amount === "number") {
+    return amount;
+  }
+  return amount.amount;
+};
 
-//   it("Ha de retornar l'import quan es passa un objecte", () => {
-//     expect(coerceAmount({ amount: 20 })).toEqual(20);
-//   });
 
-//   it("Ha de retornar l'import quan es passa un nombre", () => {
-//     expect(coerceAmount(20)).toEqual(20);
-//   });
-// });
+  it("Ha de retornar l'import quan es passa un objecte", () => {
+    expect(coerceAmount({ amount: 20 })).toEqual(20);
+  });
+
+  it("Ha de retornar l'import quan es passa un nombre", () => {
+    expect(coerceAmount(20)).toEqual(20);
+  });
+});
 
 // /*
 // Repte 13:
