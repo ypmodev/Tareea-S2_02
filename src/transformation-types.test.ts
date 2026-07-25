@@ -79,51 +79,52 @@ Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 // Repte 4:
 // Obté les claus d'un objecte com a tipus d'unió.
 // */
-describe("Transformació: obtenir les claus d'un objecte", () => {
-  const testingFrameworks = {
-    vitest: {
-      label: "Vitest",
-    },
-    jest: {
-      label: "Jest",
-    },
-    mocha: {
-      label: "Mocha",
-    },
-  };
+// describe("Transformació: obtenir les claus d'un objecte", () => {
+//   const testingFrameworks = {
+//     vitest: {
+//       label: "Vitest",
+//     },
+//     jest: {
+//       label: "Jest",
+//     },
+//     mocha: {
+//       label: "Mocha",
+//     },
+//   };
 
-  type TestingFramework = keyof typeof testingFrameworks;;
+//   type TestingFramework = keyof typeof testingFrameworks;;
 
-  type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
-});
+//   type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
+// });
 
 // /*
 // Repte 5:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'un objecte.
 // */
-// describe("Transformació: indexed access amb objectes", () => {
-//   const fakeDataDefaults = {
-//     String: "Default string",
-//     Int: 1,
-//     Float: 1.14,
-//     Boolean: true,
-//     ID: "id",
-//   };
+describe("Transformació: indexed access amb objectes", () => {
+  const fakeDataDefaults = {
+    String: "Default string",
+    Int: 1,
+    Float: 1.14,
+    Boolean: true,
+    ID: "id",
+  };
+  type FakeData = typeof fakeDataDefaults;
 
-//   type StringType = unknown;
-//   type IntType = unknown;
-//   type FloatType = unknown;
-//   type BooleanType = unknown;
-//   type IDType = unknown;
+  type StringType = FakeData["String"];;
+  type IntType = FakeData["Int"];
+  type FloatType = FakeData["Float"];
+  type BooleanType = FakeData["Boolean"];
+  type IDType = FakeData["ID"];
 
-//   type tests = [
-//     Expect<Equal<StringType, string>>,
-//     Expect<Equal<IntType, number>>,
-//     Expect<Equal<FloatType, number>>,
-//     Expect<Equal<BooleanType, boolean>>,
-//     Expect<Equal<IDType, string>>,
-//   ];
-// });
+  type tests = [
+    Expect<Equal<StringType, string>>,
+    Expect<Equal<IntType, number>>,
+    Expect<Equal<FloatType, number>>,
+    Expect<Equal<BooleanType, boolean>>,
+    Expect<Equal<IDType, string>>,
+  ];
+});
 
 // /*
 // Repte 6:
