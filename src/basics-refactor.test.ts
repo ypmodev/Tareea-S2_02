@@ -425,45 +425,45 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Actualitza el tipus de retorn de la funció perquè sigui 'User i { posts: Post[] }'.
 // */
 
-describe("Problema d'intersecció de tipus", () => {
-  interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
-  }
+// describe("Problema d'intersecció de tipus", () => {
+//   interface User {
+//     id: string;
+//     firstName: string;
+//     lastName: string;
+//   }
 
-  interface Post {
-    id: string;
-    title: string;
-    body: string;
-  }
+//   interface Post {
+//     id: string;
+//     title: string;
+//     body: string;
+//   }
   
 
-  const getDefaultUserAndPosts = (): User & { posts: Post[] } => {
-    return {
-      id: "1",
-      firstName: "Jen",
-      lastName: "Simmons",
-      posts: [
-        {
-          id: "1",
-          title: "Com vaig aprendre a tocar la guitarra",
-          body: "Va ser un acord perfecte des del principi",
-        },
-      ],
-    };
-  };
+//   const getDefaultUserAndPosts = (): User & { posts: Post[] } => {
+//     return {
+//       id: "1",
+//       firstName: "Jen",
+//       lastName: "Simmons",
+//       posts: [
+//         {
+//           id: "1",
+//           title: "Com vaig aprendre a tocar la guitarra",
+//           body: "Va ser un acord perfecte des del principi",
+//         },
+//       ],
+//     };
+//   };
 
-  const userAndPosts = getDefaultUserAndPosts();
+//   const userAndPosts = getDefaultUserAndPosts();
 
-  console.log(userAndPosts.posts[0]);
+//   console.log(userAndPosts.posts[0]);
   
-  it("Ha de retornar usuari amb posts", () => {
-   const userAndPosts = getDefaultUserAndPosts();
+//   it("Ha de retornar usuari amb posts", () => {
+//    const userAndPosts = getDefaultUserAndPosts();
 
-   expect(userAndPosts.posts[0].id).toBeTypeOf("string");
-  });
-});
+//    expect(userAndPosts.posts[0].id).toBeTypeOf("string");
+//   });
+// });
 
 // /*
 // Repte 16:
@@ -472,22 +472,22 @@ describe("Problema d'intersecció de tipus", () => {
 // Pista: revisa els Utility Types Pick i Omit.
 // */
 
-// describe("Problema d'Omit i Pick", () => {
-//   interface User {
-//     id: string;
-//     firstName: string;
-//     lastName: string;
-//   }
+describe("Problema d'Omit i Pick", () => {
+  interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+  }
 
-//   /**
-//    * Com creem un nou tipus d'objecte amb NOMÉS les propietats
-//    * firstName i lastName de User?
-//    */
+  /**
+   * Com creem un nou tipus d'objecte amb NOMÉS les propietats
+   * firstName i lastName de User?
+   */
 
-//   type MyType = unknown;
+  type MyType = Pick<User, "firstName" | "lastName">;
 
-//   type tests = [Expect<Equal<MyType, { firstName: string; lastName: string }>>];
-// });
+  type tests = [Expect<Equal<MyType, { firstName: string; lastName: string }>>];
+});
 
 // /*
 // Repte 17:
