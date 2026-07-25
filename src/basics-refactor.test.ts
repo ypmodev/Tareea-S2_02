@@ -208,84 +208,84 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Repte 8:
 // Anota la funció makeUser perquè sempre retorni un User.
 // */
-describe("Problema d'anotacions de tipus de retorn de funció", () => {
-  interface User {
-    id: number;
-    firstName: string;
-    lastName: string;
-    role: "admin" | "user" | "super-admin";
-    posts: Array<Post>;
-  }
+// describe("Problema d'anotacions de tipus de retorn de funció", () => {
+//   interface User {
+//     id: number;
+//     firstName: string;
+//     lastName: string;
+//     role: "admin" | "user" | "super-admin";
+//     posts: Array<Post>;
+//   }
 
-  interface Post {
-    id: number;
-    title: string;
-  }
+//   interface Post {
+//     id: number;
+//     title: string;
+//   }
 
 //   /**
 //    * Com ens assegurem que makeUser SEMPRE
 //    * retorni un usuari?
 //    */
-  const makeUser = (): User => {
-    return {
-      id: 1,
-    firstName: "Jen",
-    lastName: "Simmons",
-    role: "admin",
-    posts: [
-      {
-        id: 1,
-        title: "Primer post",
-      },
-    ]
-    };
-  };
+  // const makeUser = (): User => {
+  //   return {
+  //     id: 1,
+  //   firstName: "Jen",
+  //   lastName: "Simmons",
+  //   role: "admin",
+  //   posts: [
+  //     {
+  //       id: 1,
+  //       title: "Primer post",
+  //     },
+  //   ]
+  //   };
+  // };
 
-  it("Ha de retornar un usuari vàlid", () => {
-    const user = makeUser();
+//   it("Ha de retornar un usuari vàlid", () => {
+//     const user = makeUser();
 
-    expect(user.id).toBeTypeOf("number");
-    expect(user.firstName).toBeTypeOf("string");
-    expect(user.lastName).toBeTypeOf("string");
-    expect(user.role).to.be.oneOf(["super-admin", "admin", "user"]);
+//     expect(user.id).toBeTypeOf("number");
+//     expect(user.firstName).toBeTypeOf("string");
+//     expect(user.lastName).toBeTypeOf("string");
+//     expect(user.role).to.be.oneOf(["super-admin", "admin", "user"]);
 
-    expect(user.posts[0].id).toBeTypeOf("number");
-    expect(user.posts[0].title).toBeTypeOf("string");
-  });
-});
+//     expect(user.posts[0].id).toBeTypeOf("number");
+//     expect(user.posts[0].title).toBeTypeOf("string");
+//   });
+// });
 
 // /*
 // Repte 9:
 // Has d'esbrinar com actualitzar l'anotació del tipus de retorn perquè TypeScript estigui satisfet.
 // */
 
-// describe("Problema de promeses", () => {
-//   interface LukeSkywalker {
-//     name: string;
-//     height: string;
-//     mass: string;
-//     hair_color: string;
-//     skin_color: string;
-//     eye_color: string;
-//     birth_year: string;
-//     gender: string;
-//   }
+describe("Problema de promeses", () => {
+  interface LukeSkywalker {
+    name: string;
+    height: string;
+    mass: string;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
+    birth_year: string;
+    gender: string;
+  }
 
-//   const fetchLukeSkywalker = async (): LukeSkywalker => {
-//     const data = await fetch("https://swapi.py4e.com/api/people/1").then(
-//       (res) => {
-//         return res.json();
-//       }
-//     );
+  const fetchLukeSkywalker = async (): Promise<LukeSkywalker> => {
+    const data = await fetch("https://swapi.py4e.com/api/people/1").then(
+      (res) => {
+        return res.json();
+      }
+    );
 
-//     return data;
-//   };
-//   it("ha de retornar una promesa", async () => {
-//    const result = fetchLukeSkywalker();
+    return data;
+  };
+  it("ha de retornar una promesa", async () => {
+   const result = fetchLukeSkywalker();
 
-//    expect(result).toBeInstanceOf(Promise);
-//   });
-// });
+   expect(result).toBeInstanceOf(Promise);
+  });
+});
 
 // /*
 // Repte 10:
