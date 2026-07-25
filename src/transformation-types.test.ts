@@ -101,56 +101,61 @@ Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 // Repte 5:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'un objecte.
 // */
-describe("Transformació: indexed access amb objectes", () => {
-  const fakeDataDefaults = {
-    String: "Default string",
-    Int: 1,
-    Float: 1.14,
-    Boolean: true,
-    ID: "id",
-  };
-  type FakeData = typeof fakeDataDefaults;
+// describe("Transformació: indexed access amb objectes", () => {
+//   const fakeDataDefaults = {
+//     String: "Default string",
+//     Int: 1,
+//     Float: 1.14,
+//     Boolean: true,
+//     ID: "id",
+//   };
+//   type FakeData = typeof fakeDataDefaults;
 
-  type StringType = FakeData["String"];;
-  type IntType = FakeData["Int"];
-  type FloatType = FakeData["Float"];
-  type BooleanType = FakeData["Boolean"];
-  type IDType = FakeData["ID"];
+//   type StringType = FakeData["String"];;
+//   type IntType = FakeData["Int"];
+//   type FloatType = FakeData["Float"];
+//   type BooleanType = FakeData["Boolean"];
+//   type IDType = FakeData["ID"];
 
-  type tests = [
-    Expect<Equal<StringType, string>>,
-    Expect<Equal<IntType, number>>,
-    Expect<Equal<FloatType, number>>,
-    Expect<Equal<BooleanType, boolean>>,
-    Expect<Equal<IDType, string>>,
-  ];
-});
+//   type tests = [
+//     Expect<Equal<StringType, string>>,
+//     Expect<Equal<IntType, number>>,
+//     Expect<Equal<FloatType, number>>,
+//     Expect<Equal<BooleanType, boolean>>,
+//     Expect<Equal<IDType, string>>,
+//   ];
+// });
 
 // /*
 // Repte 6:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'una unió d'objectes.
 // */
-// describe("Transformació: indexed access amb unions", () => {
-//   const programModeEnumMap = {
-//     GROUP: "group",
-//     ANNOUNCEMENT: "announcement",
-//     ONE_ON_ONE: "1on1",
-//     SELF_DIRECTED: "selfDirected",
-//     PLANNED_ONE_ON_ONE: "planned1on1",
-//     PLANNED_SELF_DIRECTED: "plannedSelfDirected",
-//   } as const;
+describe("Transformació: indexed access amb unions", () => {
+  const programModeEnumMap = {
+    GROUP: "group",
+    ANNOUNCEMENT: "announcement",
+    ONE_ON_ONE: "1on1",
+    SELF_DIRECTED: "selfDirected",
+    PLANNED_ONE_ON_ONE: "planned1on1",
+    PLANNED_SELF_DIRECTED: "plannedSelfDirected",
+  } as const;
 
-//   type IndividualProgram = unknown;
+  type IndividualProgram = (typeof programModeEnumMap)[
+    | "ONE_ON_ONE"
+    | "SELF_DIRECTED"
+    | "PLANNED_ONE_ON_ONE"
+    | "PLANNED_SELF_DIRECTED"
+  ];
 
-//   type tests = [
-//     Expect<
-//       Equal<
-//         IndividualProgram,
-//         "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
-//       >
-//     >,
-//   ];
-// });
+  type tests = [
+    Expect<
+      Equal<
+        IndividualProgram,
+        "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
+      >
+    >,
+  ];
+});
 
 // /*
 // Repte 7:
