@@ -6,172 +6,172 @@ Repte 1:
 Llegeix la documentació de TypeScript sobre Utility Types i esbrina com utilitzar ReturnType per extreure el tipus de retorn de myFunc.
 Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 */
-// describe("Transformació: obtenir el tipus de retorn d'una funció", () => {
-//   const myFunc = () => {
-//     return "hello";
-//   };
+describe("Transformació: obtenir el tipus de retorn d'una funció", () => {
+  const myFunc = () => {
+    return "hello";
+  };
 
-//   /**
-//    * Com podem extreure MyFuncReturn a partir de myFunc?
-//   //  */
-//   type MyFuncReturn = ReturnType<typeof myFunc>;
+  /**
+   * Com podem extreure MyFuncReturn a partir de myFunc?
+  //  */
+  type MyFuncReturn = ReturnType<typeof myFunc>;
 
-//   type tests = [Expect<Equal<MyFuncReturn, string>>];
-// });
+  type tests = [Expect<Equal<MyFuncReturn, string>>];
+});
 
 // /*
 // Repte 2:
 // Utilitza Parameters per obtenir el tipus dels paràmetres de la funció makeQuery.
 // */
-// describe("Transformació: obtenir els paràmetres d'una funció", () => {
-//   const makeQuery = (
-//     url: string,
-//     opts?: {
-//       method?: string;
-//       headers?: {
-//         [key: string]: string;
-//       };
-//       body?: string;
-//     },
-//   ) => {};
+describe("Transformació: obtenir els paràmetres d'una funció", () => {
+  const makeQuery = (
+    url: string,
+    opts?: {
+      method?: string;
+      headers?: {
+        [key: string]: string;
+      };
+      body?: string;
+    },
+  ) => {};
 
-//   type MakeQueryParameters = Parameters<typeof makeQuery>;
+  type MakeQueryParameters = Parameters<typeof makeQuery>;
 
-//   type tests = [
-//     Expect<
-//       Equal<
-//         MakeQueryParameters,
-//         [
-//           url: string,
-//           opts?: {
-//             method?: string;
-//             headers?: {
-//               [key: string]: string;
-//             };
-//             body?: string;
-//           },
-//         ]
-//       >
-//     >,
-//   ];
-// });
+  type tests = [
+    Expect<
+      Equal<
+        MakeQueryParameters,
+        [
+          url: string,
+          opts?: {
+            method?: string;
+            headers?: {
+              [key: string]: string;
+            };
+            body?: string;
+          },
+        ]
+      >
+    >,
+  ];
+});
 
 // /*Repte 3:
 /*Utilitza ReturnType per obtenir el tipus de retorn de getUser.*/
 
-// describe("Transformació: obtenir el tipus de retorn d'una funció asíncrona", () => {
-//   const getUser = () => {
-//     return Promise.resolve({
-//       id: "123",
-//       name: "John",
-//       email: "john@example.com",
-//     });
-//   };
+describe("Transformació: obtenir el tipus de retorn d'una funció asíncrona", () => {
+  const getUser = () => {
+    return Promise.resolve({
+      id: "123",
+      name: "John",
+      email: "john@example.com",
+    });
+  };
 
-//   type ReturnValue = Awaited<ReturnType<typeof getUser>>;
+  type ReturnValue = Awaited<ReturnType<typeof getUser>>;
 
-//   type tests = [
-//     Expect<Equal<ReturnValue, { id: string; name: string; email: string }>>,
-//   ];
-// });
+  type tests = [
+    Expect<Equal<ReturnValue, { id: string; name: string; email: string }>>,
+  ];
+});
 
 // /*
 // Repte 4:
 // Obté les claus d'un objecte com a tipus d'unió.
 // */
-// describe("Transformació: obtenir les claus d'un objecte", () => {
-//   const testingFrameworks = {
-//     vitest: {
-//       label: "Vitest",
-//     },
-//     jest: {
-//       label: "Jest",
-//     },
-//     mocha: {
-//       label: "Mocha",
-//     },
-//   };
+describe("Transformació: obtenir les claus d'un objecte", () => {
+  const testingFrameworks = {
+    vitest: {
+      label: "Vitest",
+    },
+    jest: {
+      label: "Jest",
+    },
+    mocha: {
+      label: "Mocha",
+    },
+  };
 
-//   type TestingFramework = keyof typeof testingFrameworks;;
+  type TestingFramework = keyof typeof testingFrameworks;;
 
-//   type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
-// });
+  type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
+});
 
 // /*
 // Repte 5:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'un objecte.
 // */
-// describe("Transformació: indexed access amb objectes", () => {
-//   const fakeDataDefaults = {
-//     String: "Default string",
-//     Int: 1,
-//     Float: 1.14,
-//     Boolean: true,
-//     ID: "id",
-//   };
-//   type FakeData = typeof fakeDataDefaults;
+describe("Transformació: indexed access amb objectes", () => {
+  const fakeDataDefaults = {
+    String: "Default string",
+    Int: 1,
+    Float: 1.14,
+    Boolean: true,
+    ID: "id",
+  };
+  type FakeData = typeof fakeDataDefaults;
 
-//   type StringType = FakeData["String"];;
-//   type IntType = FakeData["Int"];
-//   type FloatType = FakeData["Float"];
-//   type BooleanType = FakeData["Boolean"];
-//   type IDType = FakeData["ID"];
+  type StringType = FakeData["String"];;
+  type IntType = FakeData["Int"];
+  type FloatType = FakeData["Float"];
+  type BooleanType = FakeData["Boolean"];
+  type IDType = FakeData["ID"];
 
-//   type tests = [
-//     Expect<Equal<StringType, string>>,
-//     Expect<Equal<IntType, number>>,
-//     Expect<Equal<FloatType, number>>,
-//     Expect<Equal<BooleanType, boolean>>,
-//     Expect<Equal<IDType, string>>,
-//   ];
-// });
+  type tests = [
+    Expect<Equal<StringType, string>>,
+    Expect<Equal<IntType, number>>,
+    Expect<Equal<FloatType, number>>,
+    Expect<Equal<BooleanType, boolean>>,
+    Expect<Equal<IDType, string>>,
+  ];
+});
 
 // /*
 // Repte 6:
 // Utilitza indexed access types per obtenir el tipus d'una propietat concreta d'una unió d'objectes.
 // */
-// describe("Transformació: indexed access amb unions", () => {
-//   const programModeEnumMap = {
-//     GROUP: "group",
-//     ANNOUNCEMENT: "announcement",
-//     ONE_ON_ONE: "1on1",
-//     SELF_DIRECTED: "selfDirected",
-//     PLANNED_ONE_ON_ONE: "planned1on1",
-//     PLANNED_SELF_DIRECTED: "plannedSelfDirected",
-//   } as const;
+describe("Transformació: indexed access amb unions", () => {
+  const programModeEnumMap = {
+    GROUP: "group",
+    ANNOUNCEMENT: "announcement",
+    ONE_ON_ONE: "1on1",
+    SELF_DIRECTED: "selfDirected",
+    PLANNED_ONE_ON_ONE: "planned1on1",
+    PLANNED_SELF_DIRECTED: "plannedSelfDirected",
+  } as const;
 
-//   type IndividualProgram = (typeof programModeEnumMap)[
-//     | "ONE_ON_ONE"
-//     | "SELF_DIRECTED"
-//     | "PLANNED_ONE_ON_ONE"
-//     | "PLANNED_SELF_DIRECTED"
-//   ];
+  type IndividualProgram = (typeof programModeEnumMap)[
+    | "ONE_ON_ONE"
+    | "SELF_DIRECTED"
+    | "PLANNED_ONE_ON_ONE"
+    | "PLANNED_SELF_DIRECTED"
+  ];
 
-//   type tests = [
-//     Expect<
-//       Equal<
-//         IndividualProgram,
-//         "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
-//       >
-//     >,
-//   ];
-// });
+  type tests = [
+    Expect<
+      Equal<
+        IndividualProgram,
+        "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
+      >
+    >,
+  ];
+});
 
 // /*
 // Repte 7:
 // Utilitza indexed access types i unions per obtenir el tipus dels valors d'un array.
 // */
-// describe("Transformació: obtenir el tipus dels valors d'un array", () => {
-//   const fruits = ["apple", "banana", "orange"] as const;
+describe("Transformació: obtenir el tipus dels valors d'un array", () => {
+  const fruits = ["apple", "banana", "orange"] as const;
 
-//   type AppleOrBanana = (typeof fruits)[0 | 1];
-//   type Fruit = (typeof fruits)[number];
+  type AppleOrBanana = (typeof fruits)[0 | 1];
+  type Fruit = (typeof fruits)[number];
 
-//   type tests = [
-//     Expect<Equal<AppleOrBanana, "apple" | "banana">>,
-//     Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
-//   ];
-// });
+  type tests = [
+    Expect<Equal<AppleOrBanana, "apple" | "banana">>,
+    Expect<Equal<Fruit, "apple" | "banana" | "orange">>,
+  ];
+});
 
 // /*
 // Repte 8:
@@ -199,63 +199,66 @@ describe("Transformació: obtenir el tipus dels valors d'un objecte amb as const
 // Repte 9:
 // Dona un exemple de terminologia: union, discriminated union i enum.
 // */
-// describe("Transformació: terminologia de tipus", () => {
-//   /**
-//    * És important entendre la terminologia sobre unions:
-//    *
-//    * Una de les declaracions de tipus següents és una union.
-//    * Una de les declaracions de tipus següents és una discriminated union.
-//    * Una de les declaracions de tipus següents és un enum.
-//    *
-//    * Quina és quina?
-//    */
+describe("Transformació: terminologia de tipus", () => {
+  /**
+   * És important entendre la terminologia sobre unions:
+   *
+   * Una de les declaracions de tipus següents és una union.
+   * Una de les declaracions de tipus següents és una discriminated union.
+   * Una de les declaracions de tipus següents és un enum.
+   *
+   * Quina és quina?
+   */
 
-//   type A =
-//     | {
-//         type: "a";
-//         a: string;
-//       }
-//     | {
-//         type: "b";
-//         b: string;
-//       }
-//     | {
-//         type: "c";
-//         c: string;
-//       };
+//Discriminated union//
+  type A = 
+    | {
+        type: "a";
+        a: string;
+      }
+    | {
+        type: "b";
+        b: string;
+      }
+    | {
+        type: "c";
+        c: string;
+      };
 
-//   type B = "a" | "b" | "c";
+//Union//
+  type B = "a" | "b" | "c";
 
-//   enum C {
-//     A = "a",
-//     B = "b",
-//     C = "c",
-//   }
-// });
+//Enum//
+  enum C {
+    A = "a",
+    B = "b",
+    C = "c",
+  }
+});
 
 // /*
 // Repte 10:
 // Extreu un tipus d'un element concret d'una discriminated union.
 // */
-// describe("Transformació: extract d'una discriminated union", () => {
-//   type Event =
-//     | {
-//         type: "click";
-//         event: MouseEvent;
-//       }
-//     | {
-//         type: "focus";
-//         event: FocusEvent;
-//       }
-//     | {
-//         type: "keydown";
-//         event: KeyboardEvent;
-//       };
+describe("Transformació: extract d'una discriminated union", () => {
+  type Event =
+    | {
+        type: "click";
+        event: MouseEvent;
+      }
+    | {
+        type: "focus";
+        event: FocusEvent;
+      }
+    | {
+        type: "keydown";
+        event: KeyboardEvent;
+      };
 
-//   type ClickEvent = unknown;
+  type ClickEvent = unknown;
 
-//   type tests = [Expect<Equal<ClickEvent, { type: "click"; event: MouseEvent }>>];
-// });
+  type tests = [Expect<Equal<ClickEvent, { type: "click"; event: MouseEvent }>>];
+});
 
 // /*
 // Repte 11:
