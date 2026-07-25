@@ -362,23 +362,23 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Pista: hi ha diverses maneres de resoldre aquest repte, prova diferents opcions!
 // */
 
-describe("Problema de blocs catch", () => {
-  const tryCatchDemo = (state: "fail" | "succeed") => {
-    try {
-      if (state === "fail") {
-        throw new Error("Failure!");
-      }
-    } catch (e) {
-      if (e instanceof Error) {
-      return e.message;
-    }
-    }
-  };
+// describe("Problema de blocs catch", () => {
+//   const tryCatchDemo = (state: "fail" | "succeed") => {
+//     try {
+//       if (state === "fail") {
+//         throw new Error("Failure!");
+//       }
+//     } catch (e) {
+//       if (e instanceof Error) {
+//       return e.message;
+//     }
+//     }
+//   };
 
-  it("Ha de retornar el missatge quan falla", () => {
-    expect(tryCatchDemo("fail")).toEqual("Failure!");
-  });
-});
+//   it("Ha de retornar el missatge quan falla", () => {
+//     expect(tryCatchDemo("fail")).toEqual("Failure!");
+//   });
+// });
 
 
 
@@ -393,30 +393,31 @@ describe("Problema de blocs catch", () => {
 //  Pista: pots crear una interfície base i reutilitzar-la amb extends.
 // */
 
-// describe("Problema d'herència amb extends", () => {
-//   interface User {
-//     id: string;
-//     firstName: string;
-//     lastName: string;
-//   }
 
-//   interface Post {
-//     id: string;
-//     title: string;
-//     body: string;
-//   }
+describe("Problema d'herència amb extends", () => {
+  interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+  }
 
-//   interface Comment {
-//     id: string;
-//     comment: string;
-//   }
+  interface Post {
+    id: string;
+    title: string;
+    body: string;
+  }
 
-//   type tests = [
-//     Expect<Equal<User, { id: string; firstName: string; lastName: string }>>,
-//     Expect<Equal<Post, { id: string; title: string; body: string }>>,
-//     Expect<Equal<Comment, { id: string; comment: string }>>
-//   ];
-// });
+  interface Comment {
+    id: string;
+    comment: string;
+  }
+
+  type tests = [
+    Expect<Equal<User, { id: string; firstName: string; lastName: string }>>,
+    Expect<Equal<Post, { id: string; title: string; body: string }>>,
+    Expect<Equal<Comment, { id: string; comment: string }>>
+  ];
+});
 
 // /*
 // Repte 15:
