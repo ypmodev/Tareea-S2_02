@@ -6,55 +6,55 @@ Repte 1:
 Llegeix la documentació de TypeScript sobre Utility Types i esbrina com utilitzar ReturnType per extreure el tipus de retorn de myFunc.
 Pista: pots utilitzar typeof per obtenir el tipus d'una variable o funció.
 */
-describe("Transformació: obtenir el tipus de retorn d'una funció", () => {
-  const myFunc = () => {
-    return "hello";
-  };
+// describe("Transformació: obtenir el tipus de retorn d'una funció", () => {
+//   const myFunc = () => {
+//     return "hello";
+//   };
 
-  /**
-   * Com podem extreure MyFuncReturn a partir de myFunc?
-  //  */
-  type MyFuncReturn = ReturnType<typeof myFunc>;
+//   /**
+//    * Com podem extreure MyFuncReturn a partir de myFunc?
+//   //  */
+//   type MyFuncReturn = ReturnType<typeof myFunc>;
 
-  type tests = [Expect<Equal<MyFuncReturn, string>>];
-});
+//   type tests = [Expect<Equal<MyFuncReturn, string>>];
+// });
 
 // /*
 // Repte 2:
 // Utilitza Parameters per obtenir el tipus dels paràmetres de la funció makeQuery.
 // */
-// describe("Transformació: obtenir els paràmetres d'una funció", () => {
-//   const makeQuery = (
-//     url: string,
-//     opts?: {
-//       method?: string;
-//       headers?: {
-//         [key: string]: string;
-//       };
-//       body?: string;
-//     },
-//   ) => {};
+describe("Transformació: obtenir els paràmetres d'una funció", () => {
+  const makeQuery = (
+    url: string,
+    opts?: {
+      method?: string;
+      headers?: {
+        [key: string]: string;
+      };
+      body?: string;
+    },
+  ) => {};
 
-//   type MakeQueryParameters = unknown;
+  type MakeQueryParameters = Parameters<typeof makeQuery>;
 
-//   type tests = [
-//     Expect<
-//       Equal<
-//         MakeQueryParameters,
-//         [
-//           url: string,
-//           opts?: {
-//             method?: string;
-//             headers?: {
-//               [key: string]: string;
-//             };
-//             body?: string;
-//           },
-//         ]
-//       >
-//     >,
-//   ];
-// });
+  type tests = [
+    Expect<
+      Equal<
+        MakeQueryParameters,
+        [
+          url: string,
+          opts?: {
+            method?: string;
+            headers?: {
+              [key: string]: string;
+            };
+            body?: string;
+          },
+        ]
+      >
+    >,
+  ];
+});
 
 // /*
 // Repte 3:
