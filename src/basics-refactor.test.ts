@@ -494,26 +494,26 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // La funció 'onFocusChange' is actualment 'unknown'. Visita la documentació de TypeScript i esbrina el tipus apropiat per la funció.
 // */
 
-describe("Problema de tipus de funció", () => {
+// describe("Problema de tipus de funció", () => {
 
-  const addListener = (onFocusChange: (isFocused: boolean) => void) => {
-    if (typeof window !== "undefined") {
-    window.addEventListener("focus", () => {
-      onFocusChange(true);
-    });
+//   const addListener = (onFocusChange: (isFocused: boolean) => void) => {
+//     if (typeof window !== "undefined") {
+//     window.addEventListener("focus", () => {
+//       onFocusChange(true);
+//     });
 
-    window.addEventListener("blur", () => {
-      onFocusChange(false);
-    });
-    }
-  };
+//     window.addEventListener("blur", () => {
+//       onFocusChange(false);
+//     });
+//     }
+//   };
 
-  addListener((isFocused) => {
-    console.log({ isFocused });
+//   addListener((isFocused) => {
+//     console.log({ isFocused });
 
-    type tests = [Expect<Equal<typeof isFocused, boolean>>];
-  });
-});
+//     type tests = [Expect<Equal<typeof isFocused, boolean>>];
+//   });
+// });
 
 // /*
 // Repte 18:
@@ -521,43 +521,43 @@ describe("Problema de tipus de funció", () => {
 // Consulta la sintaxi de tipatge de funcions i Promise que hem vist anteriorment per ajudar-te.
 // */
 
-// describe("Problema de tipus de funció amb promeses", () => {
+describe("Problema de tipus de funció amb promeses", () => {
 
-//     interface User {
-//         id: string;
-//         firstName: string;
-//         lastName: string;
-//       }
+    interface User {
+        id: string;
+        firstName: string;
+        lastName: string;
+      }
       
-//       const createThenGetUser = async (
-//         createUser: unknown,
-//         getUser: unknown,
-//       ): Promise<User> => {
-//         const userId: string = await createUser();
+      const createThenGetUser = async (
+        createUser: () => Promise<string>,
+        getUser: (id: string) => Promise<User>
+      ): Promise<User> => {
+        const userId: string = await createUser();
       
-//         const user = await getUser(userId);
+        const user = await getUser(userId);
       
-//         return user;
-//       };
+        return user;
+      };
       
 
-//   it("Ha de crear l'usuari i després obtenir-lo", async () => {
-//     const user = await createThenGetUser(
-//       async () => "123",
-//       async (id) => ({
-//         id,
-//         firstName: "Jen",
-//         lastName: "Simmons",
-//       })
-//     );
+  it("Ha de crear l'usuari i després obtenir-lo", async () => {
+    const user = await createThenGetUser(
+      async () => "123",
+      async (id) => ({
+        id,
+        firstName: "Jen",
+        lastName: "Simmons",
+      })
+    );
 
-//     expect(user).toEqual({
-//       id: "123",
-//       firstName: "Jen",
-//       lastName: "Simmons",
-//     });
-//   });
-// });
+    expect(user).toEqual({
+      id: "123",
+      firstName: "Jen",
+      lastName: "Simmons",
+    });
+  });
+});
 
 // /*
 // Repte:
